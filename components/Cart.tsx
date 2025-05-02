@@ -1,4 +1,7 @@
+"use client"; 
+
 import { Product } from "@/types";
+import { useRouter } from "next/navigation";
 
 interface CartProps {
   items: { product: Product; quantity: number }[];
@@ -13,10 +16,20 @@ export default function Cart({
   onIncreaseQuantity,
   onDecreaseQuantity,
 }: CartProps) {
+  const router = useRouter();
+
   const totalPrice = items.reduce(
     (total, item) => total + item.product.price * item.quantity,
     0
   );
+
+  const handleCheckout = () => {
+    if (items.length === 0) {
+      alert("Vui lòng thêm sản phẩm vào giỏ hàng");
+      return;
+    }
+    router.push("/payment-methods");
+  };
 
   return (
     <div
@@ -83,7 +96,10 @@ export default function Cart({
               <span>Tổng cộng:</span>
               <span>{totalPrice.toLocaleString("vi-VN")}đ</span>
             </div>
-            <button className="w-full bg-orange-500 text-white py-1.5 rounded-md">
+            <button
+              className="w-full bg-orange-500 text-white py-1.5 rounded-md"
+              onClick={handleCheckout}
+            >
               Thanh toán
             </button>
           </div>
