@@ -103,19 +103,23 @@ import { Product } from "@/types";
       { id: 24, name: "Sprite", image: "/images/nuoc_ga3.jpg", price: 20000, nutrition: "130 kcal, 0g béo, 34g đường" },
       { id: 25, name: "7Up", image: "/images/nuoc_ga4.jpg", price: 20000, nutrition: "125 kcal, 0g béo, 33g đường" },
       { id: 26, name: "Fanta", image: "/images/nuoc_ga5.jpg", price: 20000, nutrition: "140 kcal, 0g béo, 35g đường" },
+      { id: 27, name: "Nước có ga Ramune", image: "images/nuoc_ga6.jpg", price: 30000, nutrition: "200 kcal, 10g đường"},
     ],
     "Combo tiết kiệm": [
-      { id: 27, name: "Combo gà rán và khoai tây", image: "/images/combo1.jpg", price: 90000, nutrition: "600 kcal, 30g béo, 50g đường" },
-      { id: 28, name: "Combo pizza và nước ngọt", image: "/images/combo2.png", price: 120000, nutrition: "700 kcal, 35g béo, 60g đường" },
-      { id: 29, name: "Combo sushi và sashimi", image: "/images/combo3.jpg", price: 150000, nutrition: "550 kcal, 20g béo, 45g đường" },
-      { id: 30, name: "Combo mỳ Ý và salad", image: "/images/combo4.jpg", price: 85000, nutrition: "480 kcal, 22g béo, 42g đường" },
+      { id: 28, name: "Combo gà rán và khoai tây", image: "/images/combo1.jpg", price: 90000, nutrition: "600 kcal, 30g béo, 50g đường" },
+      { id: 29, name: "Combo pizza và nước ngọt", image: "/images/combo2.png", price: 120000, nutrition: "700 kcal, 35g béo, 60g đường" },
+      { id: 30, name: "Combo sushi và sashimi", image: "/images/combo3.jpg", price: 150000, nutrition: "550 kcal, 20g béo, 45g đường" },
+      { id: 31, name: "Combo mỳ Ý và salad", image: "/images/combo4.jpg", price: 85000, nutrition: "480 kcal, 22g béo, 42g đường" },
+      { id: 32,name:"Combo lẩu nướng", image: "images/combo5.jpg", price: 400000, nutrition: "1000 kcal, 250g béo, 10g đường" },
+      { id: 33, name: "Combo liên hoan tiết kiệm", image: "images/combo6.jpg", price: 250000, nutrition: "150000 kcal, 500g béo, 300g đường"}
     ],
     "Gà rán": [
-      { id: 31, name: "Gà rán truyền thống", image: "/images/garan1.png", price: 40000, nutrition: "250 kcal, 12g béo, 8g đường" },
-      { id: 32, name: "Gà rán cay", image: "/images/garan2.jpg", price: 45000, nutrition: "300 kcal, 15g béo, 10g đường" },
-      { id: 33, name: "Gà rán mật ong", image: "/images/garan3.jpg", price: 50000, nutrition: "350 kcal, 18g béo, 12g đường" },
-      { id: 34, name: "Gà popcorn nhỏ", image: "/images/garan4.jpg", price: 30000, nutrition: "180 kcal, 10g béo, 7g đường" },
-      //{ id: 35, name: "Gà popcorn lớn", image: "/images/garan5.jpg", price: 60000, nutrition: "360 kcal, 20g béo, 14g đường" },
+      { id: 34, name: "Gà rán truyền thống", image: "/images/garan1.png", price: 40000, nutrition: "250 kcal, 12g béo, 8g đường" },
+      { id: 35, name: "Gà rán cay", image: "/images/garan2.jpg", price: 45000, nutrition: "300 kcal, 15g béo, 10g đường" },
+      { id: 36, name: "Gà rán mật ong", image: "/images/garan3.jpg", price: 50000, nutrition: "350 kcal, 18g béo, 12g đường" },
+      { id: 37, name: "Gà popcorn nhỏ", image: "/images/garan4.jpg", price: 30000, nutrition: "180 kcal, 10g béo, 7g đường" },
+      { id: 38, name: "Gà giòn vui vẻ", image: "/images/garan5.jpg", price: 60000, nutrition: "360 kcal, 20g béo, 14g đường" },
+      { id: 39, name: "Gà sốt chanh dây", image: "/images/garan6.jpg", price: 75000, nutrition: "260 kcal, 15g béo, 20g đường" },
     ],
   };
   

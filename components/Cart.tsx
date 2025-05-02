@@ -19,22 +19,27 @@ export default function Cart({
   );
 
   return (
-    <div className="fixed top-20 right-2 w-[260px] sm:w-[290px] md:w-[320px] max-h-[600px] p-3 bg-white rounded-lg shadow-md text-sm z-50 overflow-hidden">
+    <div
+      className={`fixed right-2 bottom-0 w-[260px] sm:w-[290px] md:w-[320px] max-h-[calc(100vh-80px)] p-3 bg-white rounded-t-lg shadow-md text-sm z-40 overflow-hidden ${
+        items.length > 0 ? "translate-y-[-50px]" : "translate-y-0"
+      } transition-transform duration-300`}
+    >
       <h2 className="text-xl sm:text-2xl font-bold mb-3 flex items-center gap-2">
         <img src="/images/shopping-cart.svg" alt="Cart" className="w-7 h-7 sm:w-8 sm:h-8" />
-        Your Cart
+        Your Cart 
+        <span className="bg-red-500 text-white px-2 py-1 rounded-full text-sm">
+          {items.length}
+        </span>
       </h2>
 
       {items.length === 0 ? (
         <p className="text-center text-gray-500">Mời quý khách chọn món</p>
       ) : (
         <div className="flex flex-col h-full">
-          {/* Danh sách món ăn có scroll */}
-          <div className="flex-1 overflow-y-auto pr-1 max-h-[420px]">
+          <div className="flex-1 overflow-y-auto pr-1 max-h-[calc(100vh-200px)]">
             <ul className="space-y-3">
               {items.map(({ product, quantity }) => (
                 <li key={product.id} className="flex items-center justify-between">
-                  {/* Hình ảnh và tên món ăn */}
                   <div className="flex items-center gap-2 w-[55%]">
                     <img
                       src={product.image}
@@ -43,7 +48,6 @@ export default function Cart({
                     />
                     <span className="truncate text-xs">{product.name}</span>
                   </div>
-                  {/* Giá tiền và các nút thao tác */}
                   <div className="flex items-center gap-1">
                     <p className="text-orange-500 font-bold text-xs sm:text-sm">
                       {product.price.toLocaleString("vi-VN")}đ
@@ -74,7 +78,6 @@ export default function Cart({
             </ul>
           </div>
 
-          {/* Tổng tiền và nút thanh toán */}
           <div className="mt-3 text-xs sm:text-sm font-semibold">
             <div className="flex justify-between mb-2">
               <span>Tổng cộng:</span>
