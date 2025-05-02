@@ -82,10 +82,14 @@ export default function HomePage() {
   const filteredProducts = allProducts[selectedCategory] || [];
 
   return (
-    <div className="relative">
+    <div className="min-h-screen bg-[#0f172a]">
       <Header username={username} />
-      <div className="flex">
-        <CategoryMenu selected={selectedCategory} onSelect={setSelectedCategory} />
+      
+      <div className="pt-16 px-4"> {/* Thêm padding-top tránh header */}
+        <CategoryMenu
+          selected={selectedCategory}
+          onSelect={setSelectedCategory}
+        />
         <ProductList products={filteredProducts} onAddToCart={handleAddToCart} />
       </div>
       <Cart

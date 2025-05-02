@@ -32,24 +32,24 @@ export default function Cart({
   };
 
   return (
-    <div
-      className={`fixed right-2 bottom-0 w-[260px] sm:w-[290px] md:w-[320px] max-h-[calc(100vh-80px)] p-3 bg-white rounded-t-lg shadow-md text-sm z-40 overflow-hidden ${
-        items.length > 0 ? "translate-y-[-50px]" : "translate-y-0"
-      } transition-transform duration-300`}
-    >
-      <h2 className="text-xl sm:text-2xl font-bold mb-3 flex items-center gap-2">
-        <img src="/images/shopping-cart.svg" alt="Cart" className="w-7 h-7 sm:w-8 sm:h-8" />
-        Your Cart 
-        <span className="bg-red-500 text-white px-2 py-1 rounded-full text-sm">
+    <div className={`fixed right-4 bottom-4 w-[320px] max-h-[80vh] p-4 bg-[#1d1b35] rounded-xl shadow-2xl text-white z-50 border border-[#37335e]`}>
+      <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+        <img 
+          src="/images/shopping-cart.svg" 
+          alt="Cart" 
+          className="w-7 h-7" 
+        />
+        Giỏ hàng
+        <span className="bg-orange-500 text-white px-2 py-1 rounded-full text-sm">
           {items.length}
         </span>
       </h2>
 
       {items.length === 0 ? (
-        <p className="text-center text-gray-500">Mời quý khách chọn món</p>
+        <p className="text-center text-gray-400">Giỏ hàng trống</p>
       ) : (
         <div className="flex flex-col h-full">
-          <div className="flex-1 overflow-y-auto pr-1 max-h-[calc(100vh-200px)]">
+          <div className="flex-1 overflow-y-auto pr-2 max-h-[60vh]">
             <ul className="space-y-3">
               {items.map(({ product, quantity }) => (
                 <li key={product.id} className="flex items-center justify-between">
@@ -57,33 +57,31 @@ export default function Cart({
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-8 h-8 object-cover rounded"
+                      className="w-10 h-10 object-cover rounded"
                     />
-                    <span className="truncate text-xs">{product.name}</span>
+                    <span className="truncate text-sm">{product.name}</span>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <p className="text-orange-500 font-bold text-xs sm:text-sm">
-                      {product.price.toLocaleString("vi-VN")}đ
-                    </p>
-                    <button
-                      onClick={() => onDecreaseQuantity(product)}
-                      className="px-1 text-gray-600 border border-gray-300 rounded"
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 bg-[#2a2746] rounded px-2 py-1">
+                      <button
+                        onClick={() => onDecreaseQuantity(product)}
+                        className="text-orange-500 hover:text-orange-400"
+                      >
+                        -
+                      </button>
+                      <span className="mx-1">{quantity}</span>
+                      <button
+                        onClick={() => onIncreaseQuantity(product)}
+                        className="text-orange-500 hover:text-orange-400"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <button 
+                      onClick={() => onRemoveFromCart(product)}
+                      className="text-red-400 hover:text-red-300"
                     >
-                      -
-                    </button>
-                    <span>{quantity}</span>
-                    <button
-                      onClick={() => onIncreaseQuantity(product)}
-                      className="px-1 text-gray-600 border border-gray-300 rounded"
-                    >
-                      +
-                    </button>
-                    <button onClick={() => onRemoveFromCart(product)}>
-                      <img
-                        src="/images/remove.jpg"
-                        alt="Remove"
-                        className="w-4 h-4 sm:w-5 sm:h-5"
-                      />
+                      ✕
                     </button>
                   </div>
                 </li>
@@ -91,13 +89,15 @@ export default function Cart({
             </ul>
           </div>
 
-          <div className="mt-3 text-xs sm:text-sm font-semibold">
-            <div className="flex justify-between mb-2">
+          <div className="mt-4 pt-4 border-t border-[#37335e]">
+            <div className="flex justify-between mb-4 font-semibold">
               <span>Tổng cộng:</span>
-              <span>{totalPrice.toLocaleString("vi-VN")}đ</span>
+              <span className="text-orange-500">
+                {totalPrice.toLocaleString("vi-VN")}đ
+              </span>
             </div>
             <button
-              className="w-full bg-orange-500 text-white py-1.5 rounded-md"
+              className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-400 text-black rounded-lg hover:brightness-110 transition"
               onClick={handleCheckout}
             >
               Thanh toán

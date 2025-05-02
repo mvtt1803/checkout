@@ -24,102 +24,77 @@ export default function Header() {
   const handleLogout = () => {
     const username = localStorage.getItem("currentUser");
     if (username) {
-      localStorage.removeItem("cart"); // Xóa giỏ hàng tạm thời
+      localStorage.removeItem(`cart_${username}`);
     }
-    localStorage.removeItem("currentUser"); // Xóa tên tài khoản hiện tại
-    localStorage.removeItem("user"); // Xóa thông tin người dùng
-    alert("Đã đăng xuất thành công!");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("user");
     router.push("/login");
   };
-  
 
   const handleMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
+    timeoutRef.current && clearTimeout(timeoutRef.current);
     setIsDropdownOpen(true);
   };
 
   const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setIsDropdownOpen(false);
-    }, 200);
+    timeoutRef.current = setTimeout(() => setIsDropdownOpen(false), 200);
   };
 
   return (
-    <header className="flex items-center justify-between p-3 bg-white shadow-md sticky top-0 z-50">
-      {/* Biểu tượng và tiêu đề */}
-      <div
-        className="flex items-center gap-2 cursor-pointer"
-        onClick={() => router.push("/home")}
-      >
-        <Image
-          src="/images/home-button-1.svg"
-          alt="Home icon"
-          width={40}
-          height={40}
-          className="rounded-md"
-        />
-        <span className="text-blue-600 font-semibold text-xl">Trang chủ</span>
-      </div>
-
-      {/* Thông tin người dùng */}
-      {user && (
+    <header className="bg-[#1d1b35] fixed w-full top-0 z-50 shadow-xl">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         <div
-          className="relative group"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          className="flex items-center gap-2 cursor-pointer"
+          onClick={() => router.push("/home")}
         >
-          <div className="flex items-center gap-3 cursor-pointer">
-            <Image
-              src={user.avatar || "/images/user.svg"}
-              alt="User Avatar"
-              width={32}
-              height={32}
-              className="rounded-full border border-gray-300"
-            />
-            <span className="text-gray-700 font-medium">{user.username}</span>
-          </div>
-
-          {/* Dropdown menu */}
-          {isDropdownOpen && (
-            <div className="absolute top-[calc(100%+10px)] right-0 w-[180px] bg-gray-100 border border-gray-300 rounded-md shadow-lg overflow-hidden">
-              <ul>
-                <li
-                  className="px-4 py-2 hover:bg-blue-100 hover:text-blue-600 cursor-pointer"
-                  onClick={() => router.push("/profile")}
-                >
-                  Tài khoản
-                </li>
-                <li
-                  className="px-4 py-2 hover:bg-blue-100 hover:text-blue-600 cursor-pointer"
-                  onClick={() => router.push("/rewards")}
-                >
-                  Điểm thưởng
-                </li>
-                <li
-                  className="px-4 py-2 hover:bg-blue-100 hover:text-blue-600 cursor-pointer"
-                  onClick={() => router.push("/notifications")}
-                >
-                  Thông báo
-                </li>
-                <li
-                  className="px-4 py-2 hover:bg-red-100 hover:text-red-600 cursor-pointer"
-                  onClick={handleLogout}
-                >
-                  Đăng xuất
-                </li>
-                <li
-                  className="px-4 py-2 hover:bg-blue-100 hover:text-blue-600 cursor-pointer"
-                  onClick={() => router.push("/support")}
-                >
-                  Liên hệ CSKH
-                </li>
-              </ul>
-            </div>
-          )}
+          <Image
+            src="/images/logo.svg"
+            alt="Logo"
+            width={40}
+            height={40}
+            className="rounded-md"
+          />
+          <span className="text-white font-bold text-xl">FASTFOOD</span>
         </div>
-      )}
+
+        {user && (
+          <div
+            className="relative group"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="flex items-center gap-3 cursor-pointer">
+              <Image
+                src={user.avatar || "/images/user.svg"}
+                alt="User Avatar"
+                width={40}
+                height={40}
+                className="rounded-full border-2 border-orange-500"
+              />
+              <span className="text-white font-medium">{user.username}</span>
+            </div>
+
+            {isDropdownOpen && (
+              <div className="absolute top-full right-0 mt-2 w-48 bg-[#2a2746] rounded-lg shadow-xl border border-[#37335e]">
+                <ul className="py-2">
+                  <li
+                    className="px-4 py-2 hover:bg-[#37335e] text-white cursor-pointer"
+                    onClick={() => router.push("/profile")}
+                  >
+                    Tài khoản
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-[#37335e] text-white cursor-pointer"
+                    onClick={handleLogout}
+                  >
+                    <span className="text-red-400">Đăng xuất</span>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </header>
   );
 }

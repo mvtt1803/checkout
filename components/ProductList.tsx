@@ -1,4 +1,3 @@
-// ProductList.tsx
 "use client";
 
 import { Product } from "@/types";
@@ -15,30 +14,29 @@ export default function ProductList({
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   return (
-    <div className="mt-3 bg-gray-400/20 rounded-lg p-3 overflow-y-auto max-h-[70vh]">
-      <div className="grid grid-cols-3 gap-4">
+    <div className="mt-3 bg-[#1d1b35] rounded-xl p-4 shadow-2xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {products.map((item) => (
           <div
             key={item.id}
-            className="p-4 shadow-md rounded-lg bg-white hover:shadow-lg transition flex flex-col items-center"
+            className="p-4 bg-[#2a2746] rounded-lg text-white hover:bg-[#37335e] transition-colors group"
           >
             <img
               src={item.image}
               alt={item.name}
-              className="w-[180px] h-[260px] object-cover rounded-md cursor-pointer"
+              className="w-full h-48 object-cover rounded-lg mb-3 cursor-pointer transform group-hover:scale-105 transition-transform"
               onClick={() => setSelectedProduct(item)}
             />
-            <h3 className="mt-3 font-semibold text-xl text-center">{item.name}</h3>
-            <div className="flex items-center justify-between gap-4 mt-3 w-full">
-              <p className="text-orange-500 font-bold text-xl">
+            <h3 className="font-bold mb-1 truncate">{item.name}</h3>
+            <div className="flex items-center justify-between">
+              <p className="text-orange-500 font-bold text-lg">
                 {item.price.toLocaleString("vi-VN")}đ
               </p>
-              <button onClick={() => onAddToCart(item)}>
-                <img
-                  src="/images/shopping-cart.svg"
-                  alt="Giỏ hàng"
-                  className="w-8 h-8"
-                />
+              <button
+                onClick={() => onAddToCart(item)}
+                className="px-4 py-2 bg-gradient-to-r from-orange-500 to-yellow-400 text-black rounded-md hover:brightness-110 transition"
+              >
+                Thêm
               </button>
             </div>
           </div>
