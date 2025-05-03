@@ -9,13 +9,15 @@ const categories = [
   { id: 6, name: "Gà rán", image: "/images/garan.png"},
 ];
 
-export default function CategoryMenu({
-  onCategorySelect,
-  selectedCategory,
-}: {
+interface CategoryMenuProps {
+  selectedCategory: string | null; // Đổi tên prop thành selectedCategory
   onCategorySelect: (category: string) => void;
-  selectedCategory: string | null;
-}) {
+}
+
+export default function CategoryMenu({ // SỬA CHỖ NÀY
+  selectedCategory,
+  onCategorySelect,
+}: CategoryMenuProps) {
   return (
     <div className="mt-16 mx-4"> {/* Thêm margin-top tránh header */}
       {/* Danh sách categories */}

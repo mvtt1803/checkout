@@ -22,11 +22,11 @@ export default function ProductDetailModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center">
-      <div className="bg-white rounded-xl shadow-lg p-6 max-w-xl w-full relative">
+    <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center">
+      <div className="bg-[#1d1b35] rounded-xl shadow-2xl p-6 max-w-xl w-full relative border border-[#37335e]">
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl font-bold"
+          className="absolute top-4 right-4 text-orange-500 hover:text-orange-400 text-2xl transition-colors"
         >
           ×
         </button>
@@ -36,19 +36,24 @@ export default function ProductDetailModal({
           <img
             src={product.image}
             alt={product.name}
-            className="w-full md:w-[200px] h-[200px] object-cover rounded-lg"
+            className="w-full md:w-[200px] h-[200px] object-cover rounded-lg border-2 border-[#37335e]"
           />
 
           {/* Thông tin chi tiết sản phẩm */}
-          <div className="flex flex-col justify-between flex-1">
+          <div className="flex flex-col justify-between flex-1 text-white">
             <div>
-              <h2 className="text-2xl font-semibold mb-2">{product.name}</h2>
+              <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
               <p className="text-orange-500 font-bold text-xl mb-4">
                 {product.price.toLocaleString("vi-VN")}đ
               </p>
 
-              <div className="text-sm text-gray-600 mb-4">
-                <p><span className="font-medium">Giá trị dinh dưỡng:</span> 250 kcal, 8g đường, 3g chất béo</p>
+              <div className="text-sm text-gray-300 mb-4">
+                <p className="mb-2">
+                  <span className="font-medium text-orange-400">Thành phần:</span> Bột mì, trứng, sữa tươi, vani
+                </p>
+                <p>
+                  <span className="font-medium text-orange-400">Giá trị dinh dưỡng:</span> 250 kcal, 8g đường, 3g chất béo
+                </p>
               </div>
             </div>
 
@@ -57,14 +62,14 @@ export default function ProductDetailModal({
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-8 h-8 rounded-full border flex items-center justify-center text-lg font-bold hover:bg-gray-100"
+                  className="w-8 h-8 rounded-lg bg-[#2a2746] border border-[#37335e] flex items-center justify-center text-lg font-bold hover:bg-[#37335e] transition-colors text-orange-500"
                 >
                   -
                 </button>
-                <span className="font-semibold text-lg">{quantity}</span>
+                <span className="font-semibold text-lg w-8 text-center">{quantity}</span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-8 h-8 rounded-full border flex items-center justify-center text-lg font-bold hover:bg-gray-100"
+                  className="w-8 h-8 rounded-lg bg-[#2a2746] border border-[#37335e] flex items-center justify-center text-lg font-bold hover:bg-[#37335e] transition-colors text-orange-500"
                 >
                   +
                 </button>
@@ -72,14 +77,14 @@ export default function ProductDetailModal({
 
               <button
                 onClick={handleAdd}
-                className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition text-lg"
+                className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-yellow-400 text-black px-4 py-2 rounded-lg hover:brightness-110 transition text-lg font-bold"
               >
                 <img
-                  src="/images/cart.svg"
+                  src="/images/cart-black.svg"
                   alt="Giỏ hàng"
-                  className="w-7 h-7"
+                  className="w-6 h-6"
                 />
-                {product.price.toLocaleString("vi-VN")}đ
+                Thêm vào giỏ
               </button>
             </div>
           </div>

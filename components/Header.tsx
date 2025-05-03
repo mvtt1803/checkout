@@ -4,22 +4,26 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
-export default function Header() {
+interface HeaderProps {
+  username?: string | null;
+}
+
+export default function Header({ username }: HeaderProps) {
   const [user, setUser] = useState<{ username: string; avatar?: string } | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const router = useRouter();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (error) {
-        console.error("Error parsing user data from localStorage", error);
-      }
+    if (username) {
+      setUser({ 
+        username,
+        avatar: "/images/user.svg" // Thêm avatar mặc định
+      });
+    } else {
+      setUser(null);
     }
-  }, []);
+  }, [username]); // Chạy lại khi username thay đổi
 
   const handleLogout = () => {
     const username = localStorage.getItem("currentUser");

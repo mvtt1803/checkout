@@ -15,7 +15,7 @@ export default function PaymentMethodsPage() {
             className="hover:opacity-80 transition-opacity"
           >
             <img
-              src="/images/undo.png"
+              src="/images/back.svg"
               alt="Quay lại"
               className="w-6 h-6"
             />
@@ -33,7 +33,7 @@ export default function PaymentMethodsPage() {
           <button className="w-full p-4 bg-[#2a2746] rounded-lg text-white hover:bg-[#37335e] transition-colors flex justify-between items-center">
             <span>Thanh toán bằng thẻ tín dụng</span>
             <img
-              src="/images/credit-card.png"
+              src="/images/mastercard.png"
               alt="Thẻ tín dụng"
               className="w-12 h-8 object-contain"
             />

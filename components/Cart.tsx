@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 interface CartProps {
   items: { product: Product; quantity: number }[];
   onRemoveFromCart: (product: Product) => void;
-  onIncreaseQuantity: (product: Product) => void;
-  onDecreaseQuantity: (product: Product) => void;
+  onIncreaseQuantity: (product: Product) => void; // Tên prop chuẩn
+  onDecreaseQuantity: (product: Product) => void; // Tên prop chuẩn
 }
 
 export default function Cart({

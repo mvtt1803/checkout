@@ -4,13 +4,15 @@ import { Product } from "@/types";
 import { useState } from "react";
 import ProductDetailModal from "@/components/ProductDetailModal";
 
-export default function ProductList({
+interface ProductListProps {
+  products: Product[];
+  onAddToCart: (product: Product) => void; // Sửa tên prop chuẩn
+}
+
+export default function ProductList({ // SỬA CHỖ NÀY
   products,
   onAddToCart,
-}: {
-  products: Product[];
-  onAddToCart: (product: Product) => void;
-}) {
+}: ProductListProps) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   return (

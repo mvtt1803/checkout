@@ -87,10 +87,13 @@ export default function HomePage() {
       
       <div className="pt-16 px-4"> {/* Thêm padding-top tránh header */}
         <CategoryMenu
-          selected={selectedCategory}
-          onSelect={setSelectedCategory}
+          selectedCategory={selectedCategory}
+          onCategorySelect={setSelectedCategory}
         />
-        <ProductList products={filteredProducts} onAddToCart={handleAddToCart} />
+        <ProductList
+          products={filteredProducts}
+          onAddToCart={handleAddToCart} // Truyền đúng tên prop
+        />
       </div>
       <Cart
         items={cart}

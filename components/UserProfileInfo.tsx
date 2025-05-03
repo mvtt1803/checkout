@@ -10,60 +10,53 @@ export default function CustomerInfo() {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("currentUser");
     router.push("/login");
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
+    <div className="min-h-screen bg-[#0f172a] flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between p-3 bg-white shadow-sm sticky top-0 z-50">
-        {/* Biểu tượng và tiêu đề trang chủ */}
+      <header className="flex items-center justify-between p-4 bg-[#1d1b35] border-b border-[#37335e] sticky top-0 z-50">
         <div
-          className="flex items-center gap-1 cursor-pointer"
+          className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
           onClick={() => router.push("/home")}
         >
           <Image
-            src="/images/home-button-1.svg"
-            alt="Home icon"
+            src="/images/logo.svg"
+            alt="Logo"
             width={40}
             height={40}
+            className="rounded-md"
           />
-          <span className="text-blue-600 font-bold text-2xl">Back to home</span>
+          <span className="text-orange-500 font-bold text-xl">Trang chủ</span>
         </div>
-
-        {/* Nút đóng */}
-        <button
-          className="text-red-600 hover:text-red-800 text-2xl font-bold transition-transform transform hover:scale-110"
-          onClick={() => router.push("/home")}
-        >
-          ×
-        </button>
-      </div>
+      </header>
 
       {/* Main layout */}
       <div className="flex flex-1">
         {/* Sidebar */}
-        <div className="w-[260px] border-r p-5 bg-white shadow-lg">
+        <div className="w-[260px] border-r border-[#37335e] p-5 bg-[#1d1b35]">
           <div className="flex flex-col items-center gap-3 mb-5">
-            <div className="w-24 h-24 bg-gray-300 rounded-full" />
-            <h1 className="text-lg font-bold text-gray-800">Thông tin khách hàng</h1>
+            <div className="w-24 h-24 bg-[#2a2746] rounded-full border-2 border-orange-500" />
+            <h1 className="text-lg font-bold text-white">Thông tin tài khoản</h1>
           </div>
 
-          <ul className="divide-y divide-gray-300">
+          <ul className="divide-y divide-[#37335e]">
             <li
-              className="py-3 hover:bg-gray-100 cursor-pointer text-center text-gray-700 font-medium"
+              className="py-3 hover:bg-[#2a2746] cursor-pointer text-center text-white font-medium transition-colors"
               onClick={() => setSelectedTab("account")}
             >
               Quản lý tài khoản
             </li>
             <li
-              className="py-3 hover:bg-gray-100 cursor-pointer text-center text-gray-700 font-medium"
+              className="py-3 hover:bg-[#2a2746] cursor-pointer text-center text-white font-medium transition-colors"
               onClick={() => setSelectedTab("history")}
             >
-              Lịch sử giao dịch
+              Lịch sử đơn hàng
             </li>
             <li
-              className="py-3 hover:bg-gray-100 cursor-pointer text-center text-red-600 font-medium"
+              className="py-3 hover:bg-[#2a2746] cursor-pointer text-center text-red-400 font-medium transition-colors"
               onClick={handleLogout}
             >
               Đăng xuất
@@ -73,52 +66,60 @@ export default function CustomerInfo() {
 
         {/* Main content */}
         {selectedTab && (
-          <div className="flex-1 flex justify-center items-center">
-            <div className="relative w-full max-w-4xl bg-white p-8 shadow-lg rounded-lg">
+          <div className="flex-1 flex justify-center items-start p-8">
+            <div className="w-full max-w-4xl bg-[#2a2746] p-6 rounded-xl border border-[#37335e] shadow-2xl">
               {selectedTab === "account" && (
-                <div>
-                  <h2 className="text-xl font-bold mb-4">Quản lý tài khoản</h2>
-                  <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="space-y-4">
+                  <h2 className="text-2xl font-bold text-white mb-6">Cập nhật thông tin</h2>
+                  <div className="grid grid-cols-2 gap-4">
                     <input
                       type="text"
                       placeholder="Họ"
-                      className="p-2 border rounded bg-gray-100"
+                      className="p-3 bg-[#1d1b35] border border-[#37335e] rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-500"
                     />
                     <input
                       type="text"
                       placeholder="Tên"
-                      className="p-2 border rounded bg-gray-100"
+                      className="p-3 bg-[#1d1b35] border border-[#37335e] rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-500"
                     />
                   </div>
                   <input
                     type="email"
                     placeholder="Email"
-                    className="w-full p-2 border rounded mb-4 bg-gray-100"
+                    className="w-full p-3 bg-[#1d1b35] border border-[#37335e] rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-500"
                   />
                   <input
                     type="text"
-                    placeholder="Username"
-                    className="w-full p-2 border rounded mb-4 bg-gray-100"
+                    placeholder="Tên đăng nhập"
+                    className="w-full p-3 bg-[#1d1b35] border border-[#37335e] rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-500"
                   />
-                  <div className="relative mb-4">
+                  <div className="relative">
                     <input
                       type="password"
                       placeholder="Mật khẩu"
-                      className="w-full p-2 border rounded bg-gray-100"
+                      className="w-full p-3 bg-[#1d1b35] border border-[#37335e] rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-500"
                     />
-                    <span className="absolute right-3 top-2 text-gray-500 cursor-pointer">👁️</span>
+                    <button className="absolute right-3 top-3 text-gray-400 hover:text-orange-500">
+                    </button>
                   </div>
-                  <div className="flex gap-4">
-                    <button className="bg-green-500 text-white px-4 py-2 rounded">Lưu</button>
-                    <button className="bg-red-500 text-white px-4 py-2 rounded">Lưu và thoát</button>
+                  <div className="flex gap-4 mt-6">
+                    <button className="bg-gradient-to-r from-orange-500 to-yellow-400 text-black px-6 py-2 rounded-lg font-bold hover:brightness-110 transition">
+                      Lưu thay đổi
+                    </button>
+                    <button className="bg-[#1d1b35] border border-[#37335e] text-white px-6 py-2 rounded-lg hover:bg-[#37335e] transition">
+                      Hủy bỏ
+                    </button>
                   </div>
                 </div>
               )}
 
               {selectedTab === "history" && (
-                <div>
-                  <h2 className="text-xl font-bold mb-4">Lịch sử giao dịch</h2>
-                  <p>Chức năng này đang được phát triển!</p>
+                <div className="text-center py-12">
+                  <h2 className="text-2xl font-bold text-white mb-4">Lịch sử đơn hàng</h2>
+                  <p className="text-gray-400">Chức năng đang được phát triển</p>
+                  <div className="mt-4 animate-pulse">
+                    <div className="h-48 bg-[#1d1b35] rounded-xl"></div>
+                  </div>
                 </div>
               )}
             </div>
