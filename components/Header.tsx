@@ -15,23 +15,19 @@ export default function Header({ username }: HeaderProps) {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (username) {
-      setUser({ 
-        username,
-        avatar: "/images/user.svg" // Thêm avatar mặc định
-      });
-    } else {
-      setUser(null);
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (error) {
+        console.error("Lỗi đọc thông tin người dùng", error);
+      }
     }
-  }, [username]); // Chạy lại khi username thay đổi
+  }, []);
 
   const handleLogout = () => {
-    const username = localStorage.getItem("currentUser");
-    if (username) {
-      localStorage.removeItem(`cart_${username}`);
-    }
-    localStorage.removeItem("currentUser");
     localStorage.removeItem("user");
+    localStorage.removeItem("currentUser");
     router.push("/login");
   };
 
@@ -89,9 +85,27 @@ export default function Header({ username }: HeaderProps) {
                   </li>
                   <li
                     className="px-4 py-2 hover:bg-[#37335e] text-white cursor-pointer"
+                    onClick={() => router.push("/profile#rewards")}
+                  >
+                    Điểm thưởng
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-[#37335e] text-white cursor-pointer"
+                    onClick={() => router.push("/profile#history")}
+                  >
+                    Lịch sử
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-[#37335e] text-white cursor-pointer"
                     onClick={handleLogout}
                   >
                     <span className="text-red-400">Đăng xuất</span>
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-[#37335e] text-white cursor-pointer"
+                    onClick={() => router.push("/support")}
+                  >
+                    Liên hệ CSKH
                   </li>
                 </ul>
               </div>

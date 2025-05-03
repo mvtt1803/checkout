@@ -5,3 +5,10 @@ export interface Product {
   price: number;
   nutrition?: string;
 }
+
+export interface Reward {
+  id: string;
+  points: number;
+  date: string;
+  source: string;
+}

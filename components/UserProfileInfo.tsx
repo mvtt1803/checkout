@@ -1,12 +1,21 @@
 "use client";
 
+import { useEffect,useState } from "react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import Image from "next/image";
 
 export default function CustomerInfo() {
   const router = useRouter();
-  const [selectedTab, setSelectedTab] = useState<"account" | "history" | null>(null);
+  const [selectedTab, setSelectedTab] = useState<"account" | "history" | "rewards" | null>(null);
+
+  useEffect(() => {
+    const hash = window.location.hash.substring(1);
+    if (hash === "history" || hash === "rewards") {
+      setSelectedTab(hash);
+    } else {
+      setSelectedTab("account");
+    }
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -54,6 +63,12 @@ export default function CustomerInfo() {
               onClick={() => setSelectedTab("history")}
             >
               Lịch sử đơn hàng
+            </li>
+            <li
+              className="py-3 hover:bg-[#2a2746] cursor-pointer text-center text-white font-medium transition-colors"
+              onClick={() => setSelectedTab("rewards")}
+            >
+              Điểm thưởng
             </li>
             <li
               className="py-3 hover:bg-[#2a2746] cursor-pointer text-center text-red-400 font-medium transition-colors"
@@ -112,6 +127,16 @@ export default function CustomerInfo() {
                   </div>
                 </div>
               )}
+
+              {selectedTab === "rewards" && (
+                  <div className="text-center py-12">
+                    <h2 className="text-2xl font-bold text-white mb-4">Điểm thưởng</h2>
+                    <p className="text-gray-400">Chức năng đang được phát triển</p>
+                    <div className="mt-4 animate-pulse">
+                      <div className="h-48 bg-[#1d1b35] rounded-xl"></div>
+                    </div>
+                  </div>
+                )}
 
               {selectedTab === "history" && (
                 <div className="text-center py-12">
