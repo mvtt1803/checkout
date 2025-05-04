@@ -17,14 +17,37 @@ export default function RegisterForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.password === form.confirmPassword) {
-      // Lưu thông tin đăng ký vào localStorage
-      localStorage.setItem('user', JSON.stringify({ username: form.username, email: form.email }));
-      alert("Đăng ký thành công!");
-      router.push("/home");
-    } else {
-      alert("Mật khẩu không khớp");
+    
+    // Kiểm tra các trường bắt buộc
+    if (!form.username || !form.email || !form.password || !form.confirmPassword) {
+      alert("Vui lòng điền đầy đủ thông tin!");
+      return;
     }
+
+    if (form.password !== form.confirmPassword) {
+      alert("Mật khẩu không khớp!");
+      return;
+    }
+
+    // Kiểm tra email tồn tại trong localStorage
+    const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
+    if (existingUsers.some((user: any) => user.email === form.email)) {
+      alert("Email đã được đăng ký!");
+      return;
+    }
+
+    // Lưu thông tin người dùng mới
+    const newUser = {
+      username: form.username,
+      email: form.email,
+      password: form.password, // Trong thực tế nên mã hóa mật khẩu
+      avatar: "/images/user.svg"
+    };
+
+    localStorage.setItem("users", JSON.stringify([...existingUsers, newUser]));
+    localStorage.setItem("currentUser", newUser.username);
+    alert("Đăng ký thành công!");
+    router.push("/home");
   };
 
   return (
@@ -53,7 +76,7 @@ export default function RegisterForm() {
             <input
               type="text"
               name="username"
-              placeholder="User name"
+              placeholder="Tên người dùng"
               className="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-600 focus:outline-none"
               value={form.username}
               onChange={handleChange}
@@ -102,4 +125,4 @@ export default function RegisterForm() {
       </div>
     </div>
   );
-} 
+}
