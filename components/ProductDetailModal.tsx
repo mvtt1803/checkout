@@ -80,7 +80,7 @@ export default function ProductDetailModal({
                 className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-yellow-400 text-black px-4 py-2 rounded-lg hover:brightness-110 transition text-lg font-bold"
               >
                 <img
-                  src="/images/cart-black.svg"
+                  src="/images/cart.svg"
                   alt="Giỏ hàng"
                   className="w-6 h-6"
                 />
