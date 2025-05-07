@@ -51,8 +51,12 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0f172a]">
-      <div className="flex bg-[#1d1b35] rounded-2xl shadow-2xl w-[880px] p-4 gap-x-8">
+    <div 
+      className="min-h-screen flex items-center justify-center"
+      style={{ 
+        background: "linear-gradient(135deg, #0f0f0f, #1a1a2e, #3b3b58)" 
+      }}
+    >
         {/* Poster bên trái */}
         <div className="w-1/2 bg-white rounded-xl overflow-hidden">
           <img
@@ -123,6 +127,5 @@ export default function RegisterForm() {
           </p>
         </div>
       </div>
-    </div>
   );
 }
